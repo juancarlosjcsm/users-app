@@ -1,0 +1,68 @@
+<section class="rounded bg-light m-4 shadow-sm p-4">
+  <div class="d-sm-flex d-grid justify-content-between">
+    <span class="d-flex">
+      <h2>Usuarios</h2>
+      @if(order == 'asc'){
+        <button class="btn btn-icon"(click)="sort('desc')"><i class="bi bi-sort-up"></i></button>
+      }@else{
+        <button class="btn btn-icon" (click)="sort('asc')"><i class="bi bi-sort-down"></i></button>
+      }
+    </span>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+      <i class="bi bi-person-plus-fill"></i>
+      Añadir usuario
+    </button>
+  </div>
+  <div class="row mt-2">
+    @for(user of users(); track user.id){
+      <div class="col-lg-4 col-md-6 my-2">
+        <app-user-card [user]="user"></app-user-card>
+      </div>
+    }
+  </div>
+  <p-paginator class="d-none d-md-block" (onPageChange)="changePage($event)" [first]="1" [rows]="6" [totalRecords]="12" />
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Añadir Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm">
+          <div class="mb-3">
+            <label for="first_name" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control"
+              id="first_name"
+              formControlName="first_name"
+              class="form-control"
+              placeholder="Nombre">
+          </div>
+          <div class="mb-3">
+            <label for="last_name" class="col-form-label">Apellido:</label>
+            <input type="text" class="form-control"
+              id="last_name"
+              formControlName="last_name"
+              class="form-control"
+              placeholder="Apellido">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" class="form-control"
+            id="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="Email">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createUser()" [disabled]="!userForm.valid">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

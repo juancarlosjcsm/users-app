@@ -1,0 +1,73 @@
+<div class="container mt-4">
+  <button class="btn btn-primary" [routerLink]="['/users']"><i class="bi bi-arrow-bar-left"></i>Volver</button>
+  @if(user){
+    <div class="row rounded bg-light mt-2 p-4">
+      <div class="card rounded shadow-sm border-0 p-4 col-md-4 d-grid justify-content-center">
+        <img [src]="user.avatar" class="rounded w-100" alt="{{ user.email }}">
+        <h3 class="d-block d-xl-flex align-items-left w-100">
+          {{ user.first_name }} {{ user.last_name }}
+        </h3>
+        <p class="text-muted d-flex justify-content-center">{{user.email}}</p>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal">
+          <i class="bi bi-pencil"></i>
+          Editar
+        </button>
+      </div>
+
+      <div class="col-md-8 ps-4">
+        <h3>Nombre</h3>
+        <p>{{ user.first_name }}</p>
+        <h3>Apellido</h3>
+        <p>{{ user.last_name }}</p>
+        <h3>Email</h3>
+        <p>{{user.email}}</p>
+      </div>
+    </div>
+  }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="userForm">
+          <div class="mb-3">
+            <label for="first_name" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control"
+              id="first_name"
+              formControlName="first_name"
+              class="form-control"
+              placeholder="Nombre">
+          </div>
+          <div class="mb-3">
+            <label for="last_name" class="col-form-label">Apellido:</label>
+            <input type="text" class="form-control"
+              id="last_name"
+              formControlName="last_name"
+              class="form-control"
+              placeholder="Apellido">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" class="form-control"
+            id="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="Email">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateUser()" [disabled]="!userForm.valid">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

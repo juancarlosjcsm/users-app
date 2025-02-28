@@ -1,0 +1,12 @@
+@let user = currentUser();
+<div class="card cursor-pointer border-0 shadow-sm h-100" [routerLink]="['/users', (user.id)]">
+  <div class="row h-100">
+    <div class="col-sm-3 col-4">
+      <img [src]="user.avatar" class="rounded w-100 h-100" alt="avatar">
+    </div>
+    <div class="col-sm-9 col-8 ps-0">
+      <h5 class="card-title text-primary mt-1">{{user.first_name}} {{user.last_name}}</h5>
+      <p class="card-text">{{user.email}}</p>
+    </div>
+  </div>
+</div>

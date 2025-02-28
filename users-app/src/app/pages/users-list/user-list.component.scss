@@ -1,0 +1,65 @@
+::ng-deep{
+  .p-paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .p-paginator .p-paginator-pages {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .p-paginator .p-paginator-page {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+    color: #333; /* Texto por defecto */
+  }
+
+  .p-paginator-page-selected{
+    background: #007bff !important;
+    color: white !important;
+  }
+
+  .p-paginator .p-paginator-page:hover {
+    background: #007bff;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+  }
+
+  .p-paginator .p-paginator-page.p-highlight {
+    background: #007bff;
+    color: white;
+    border: none;
+    box-shadow: 0 3px 6px rgba(0, 123, 255, 0.5);
+  }
+
+  .p-paginator .p-paginator-next,
+  .p-paginator .p-paginator-prev {
+    background: transparent;
+    color: #007bff;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  .p-paginator .p-paginator-next:hover,
+  .p-paginator .p-paginator-prev:hover {
+    color: #0056b3;
+  }
+
+  .p-paginator .p-paginator-next.p-disabled,
+  .p-paginator .p-paginator-prev.p-disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+}
